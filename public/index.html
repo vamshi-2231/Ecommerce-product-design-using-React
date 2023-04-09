@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Ecomers_webpage</title>
+  <script defer="" src="main.js"></script><style>@media screen and (max-width: 651px) {
+    .menu-container {
+      position: fixed;
+      list-style: none;
+      width: 0;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background-color: var(--white);
+      z-index: 5;
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+  
+    .menu-container li {
+      margin-top: 1rem;
+    }
+  
+    .logo {
+      width: 100px;
+    }
+  }
+  
+  .menu-container li {
+    list-style: none;
+  }
+  
+  .menu-container a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: bold;
+  }
+  
+  .menu-container a:hover {
+    color: var(--veryVarkBlue);
+  }
+  
+  .close {
+    position: absolute;
+    top: 20px;
+  }
+  
+  @media screen and (min-width: 650px) {
+    .hamburger {
+      display: none;
+    }
+  
+    .menu-container {
+      display: flex;
+      margin: 0 1.5rem;
+    }
+  
+    .menu-container li {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      padding-right: 20px;
+    }
+  
+    .menu-container a {
+      color: var(--darkGrayishBlue);
+      font-weight: bold;
+    }
+  
+    .menu-container a:hover {
+      color: var(--black);
+      font-weight: bold;
+    }
+  }
+  
+</style><style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --mobile: 375px;
+    --desktop: 1440px;
+    --orange: hsl(26, 100%, 55%);
+    --paleOrange: hsl(25, 100%, 94%);
+    --veryVarkBlue: hsl(220, 13%, 13%);
+    --darkGrayishBlue: hsl(219, 9%, 45%);
+    --grayishBlue: hsl(220, 14%, 75%);
+    --lightGrayishBlue: hsl(223, 64%, 98%);
+    --white: hsl(0, 0%, 100%);
+    --whiteFaded: hsla(0, 0%, 100%, 0.59);
+    --blackFaded: hsla(0, 0%, 0%, 0.253);
+    --black: hsl(0, 0%, 0%);
+    --kumbhSans: 'Kumbh Sans', sans-serif;
+    --fontSize: 1rem;
+  }
+  
+  body {
+    font-family: var(--kumbhSans);
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 3.4rem;
+  }
+  
+  .navbar div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--kumbhSans);
+  }
+  
+  .navbar svg {
+    margin-right: 1rem;
+  }
+  
+  .cart-div > img {
+    width: 20px;
+  }
+  
+  .img-courosal {
+    width: 100%;
+  }
+  
+  .attribution {
+    font-size: 11px;
+    text-align: center;
+    display: none;
+  }
+  
+  .attribution a {
+    color: hsl(228, 45%, 44%);
+  }
+  
+  @media screen and (min-width: 375px) {
+    body {
+      padding: 0 13%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  
+      /* grid-template-rows: 9rem repeat(2, 1fr); */
+      column-gap: 1rem;
+      min-height: 100vh;
+    }
+  
+    .navbar {
+      min-height: 6rem !important;
+      grid-column: span 2;
+      padding: 0;
+      border-bottom: 1px solid var(--grayishBlue);
+      margin-bottom: 5rem;
+    }
+  
+    .headline {
+      margin-top: 1rem;
+    }
+  
+    .headline > p {
+      margin-top: 1.5rem;
+    }
+  
+    .cart-div > img {
+      width: 40px;
+    }
+  
+    .logo {
+      width: 128px;
+    }
+  }
+  
+</style><style>.slideshow-container {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+  }
+  
+  .myslide {
+    display: none;
+  }
+  
+  .circle {
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--white);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.6s ease;
+  }
+  
+  .prev,
+  .next {
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+  }
+  
+  .circle-prev {
+    left: 10px;
+    top: 47%;
+  }
+  
+  .circle-next {
+    right: 10px;
+    top: 47%;
+  }
+  
+  .circle-prev:hover {
+    background-color: var(--whiteFaded);
+  }
+  
+  .circle-next:hover {
+    background-color: var(--whiteFaded);
+  }
+  
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+  
+  .thumbnail-container {
+    display: none;
+  }
+  
+  @media screen and (min-width: 375px) {
+    .image-slide-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .slideshow-container {
+      grid-row: 2 / 3;
+      margin-bottom: 1rem;
+      border-radius: 15px;
+      width: 80%;
+    }
+  
+    .thumbnail-container {
+      width: 80%;
+      height: 85px;
+      margin-bottom: 10rem;
+      display: flex;
+      gap: 10px;
+    }
+  
+    .myThumbnails {
+      border-radius: 10px;
+      overflow: hidden;
+      list-style: none;
+      position: relative;
+    }
+    .myThumbnails:focus {
+      border: 1px solid var(--orange);
+      outline: 1px solid var(--orange);
+    }
+  
+    .faded-thumbnail-bg {
+      position: absolute;
+      width: 100%;
+    }
+  
+    .faded-thumbnail-bg-focus {
+      background-color: rgba(255, 255, 255, 0.559);
+      height: 100%;
+    }
+  
+    .myThumbnails img {
+      width: 100%;
+    }
+  
+    .circle {
+      display: none;
+    }
+  
+    .slide-pop-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.876);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s;
+    }
+  
+    .inner-slide {
+      width: 30%;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 390px;
+    }
+  
+    .inner-slide img {
+      width: 100%;
+    }
+  
+    .pop-thumbnail {
+      width: 25%;
+      height: 74px;
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+  
+    .pop-close {
+      position: absolute;
+      top: 40px;
+      left: 63.5%;
+      width: 19px;
+      fill: var(--white);
+      cursor: pointer;
+    }
+  
+    .popup-circle-next,
+    .popup-circle-prev {
+      display: flex;
+      width: 40px;
+      height: 40px;
+      top: 15rem;
+    }
+  
+    .popup-circle-next {
+      right: 28rem;
+    }
+  
+    .popup-circle-prev {
+      left: 28rem;
+    }
+  }
+  
+  </style><style>.headline,
+  .cart-section {
+    padding: 2.5rem 1.2rem 0;
+  }
+  
+  .headline > h1 {
+    color: var(--orange);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 2px;
+  }
+  
+  .headline > h2 {
+    margin: 0.5rem 0;
+    font-weight: bold;
+    color: var(--black);
+  }
+  
+  .headline > p {
+    line-height: 1.4rem;
+    font-size: 0.9rem;
+    color: var(--veryVarkBlue);
+  }
+  
+</style><style>.price-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .price-section > div {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .price + span {
+    color: var(--orange);
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  .price-section > span {
+    text-decoration: line-through;
+    font-size: 0.9rem;
+    color: var(--darkGrayishBlue);
+  }
+  
+  .add-item-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    font-weight: bold;
+    list-style: none;
+    margin: 2rem 0;
+  }
+  
+  .btn {
+    width: 100%;
+    background-color: var(--orange);
+    border: none;
+    height: 2.5rem;
+    border-radius: 8px;
+    color: var(--paleOrange);
+    font-family: var(--kumbhSans);
+  }
+  
+  .cart-btn-wrapper {
+    margin: 0 0 80px;
+  }
+  
+  .add-to-cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-to-cart-btn svg {
+    margin-right: 10px;
+  }
+  
+  .add-to-cart-btn p {
+    margin-left: 10px;
+  }
+  
+  .bg-cart-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    background-color: var(--blackFaded);
+    z-index: 5;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+  }
+  
+  .cart-box {
+    position: fixed;
+    top: 55px;
+    border-radius: 10px;
+    width: 95%;
+    background-color: var(--white);
+  }
+  
+  .cart-box h4 {
+    border-bottom: 2px solid var(--blackFaded);
+    padding: 1rem;
+  }
+  
+  .inner-cart-box,
+  .inner-cart-box + div {
+    padding: 1rem;
+  }
+  
+  .card-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.91rem;
+  }
+  
+  .product-thumbnail + div {
+    margin-left: 10px;
+  }
+  
+  .card-detail > div:first-child {
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-thumbnail {
+    width: 40px;
+    border-radius: 5px;
+  }
+  
+  .product-delete-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .checkout-cart-active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .cart-div {
+    position: relative;
+  }
+  
+  .cart-count {
+    position: absolute;
+    background-color: var(--orange);
+    color: var(--white);
+    font-family: sans-serif;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 20px;
+    height: 15px;
+    text-align: center;
+    top: -10px;
+    right: 25px;
+  }
+  
+  .empty-message {
+    width: 100%;
+    text-align: center;
+    margin: 30px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--darkGrayishBlue);
+  }
+  
+  @media screen and (min-width: 375px) {
+    .price-section {
+      display: block;
+      grid-column: span 2;
+    }
+  
+    .cart-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      height: 100px;
+    }
+  
+    .add-item-section {
+      display: flex;
+      align-items: center;
+    }
+  
+    .cart-btn-wrapper {
+      margin: 30px 0;
+    }
+  
+    .minus-icon {
+      padding-bottom: 4px;
+    }
+  
+    .cart-count {
+      position: absolute;
+      background-color: var(--orange);
+      color: var(--white);
+      font-family: sans-serif;
+      font-size: 12px;
+      border-radius: 50%;
+      width: 20px;
+      height: 15px;
+      text-align: center;
+      top: 0;
+      right: 45px;
+    }
+  
+    .cart-box {
+      top: 5.625rem;
+      width: 22%;
+      right: 5.625rem;
+      box-shadow: 0 15px 25px -5px rgb(155, 155, 155);
+    }
+  
+    .bg-cart-box {
+      justify-content: flex-end;
+      background-color: rgba(243, 247, 248, 0);
+    }
+  }
+  
+</style></head>
+  
+  <body>
+    <nav class="navbar">
+      <div>
+        <svg class="hamburger" width="16" height="15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z" fill="#69707D" fill-rule="evenodd"></path>
+        </svg>
+        <header class="header">
+          <a href="##">
+            <img class="logo" src="https://bobb-rob.github.io/ecommerce-product-page/4fe9c1e86cf9bf600f0c.svg" alt="Sneakers logo">
+          </a>
+        </header>
+        <ul class="menu-container">
+          <li><a href="#">Collections</a> </li>
+          <li><a href="#">Men</a> </li>
+          <li><a href="#">Women</a> </li>
+          <li><a href="#">About</a> </li>
+          <li><a href="#">Contact</a> </li>
+        </ul>
+      </div>
+      <div class="cart-div">
+        <span class="cart-count">0</span>
+        <svg class="checkout-cart" width="22" height="20" xmlns="./icon-cart.svg">
+         
+        </svg>
+        <img src="https://bobb-rob.github.io/ecommerce-product-page/faae000862fa4e4f34e8.png" class="avatar" alt="avatar">
+      </div>
+    </nav>
+  
+    <div class="bg-cart-box">
+      <div class="cart-box">
+        <div>
+          <h4>Cart</h4>
+        </div>
+        <div class="inner-cart-box">
+  
+        <p class="empty-message">Your cart is empty.</p></div>
+        <div>
+          <button type="button" class="btn checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="image-slide-wrapper">
+      <div class="slideshow-container"><div class="myslide fade" style="display: block;">
+      <img class="img-courosal" src="https://bobb-rob.github.io/ecommerce-product-page/9962862ef3eff6d65e5b.jpg" alt="img-courosal">
+    </div><div class="myslide fade" style="display: none;">
+      <img class="img-courosal" src="https://bobb-rob.github.io/ecommerce-product-page/af5c71ba9ffcc0b8b54d.jpg" alt="img-courosal">
+    </div><div class="myslide fade" style="display: none;">
+      <img class="img-courosal" src="https://bobb-rob.github.io/ecommerce-product-page/c8bb0aaccecdebb16596.jpg" alt="img-courosal">
+    </div><div class="myslide fade" style="display: none;">
+      <img class="img-courosal" src="https://bobb-rob.github.io/ecommerce-product-page/520cc50bd13955f55cb2.jpg" alt="img-courosal">
+    </div>
+        
+       <div class="circle circle-next">
+          <a class="next"></a>
+        </div><div class="circle circle-prev">
+          <a class="prev"></a>
+     </div>
+     </div>
+      <ul class="thumbnail-container">
+  
+      <li class="myThumbnails" tabindex="0" id="thumb-1">
+    <div class="faded-thumbnail-bg faded-thumbnail-bg-focus"></div>
+    <img src="https://bobb-rob.github.io/ecommerce-product-page/9f21a1e6071bec55863b.jpg" id="1" alt="product-thumbnail"></li><li class="myThumbnails" tabindex="0" id="thumb-2">
+    <div class="faded-thumbnail-bg"></div>
+    <img src="https://bobb-rob.github.io/ecommerce-product-page/b7a62a37890871a8ff78.jpg" id="2" alt="product-thumbnail"></li><li class="myThumbnails" tabindex="0" id="thumb-3">
+    <div class="faded-thumbnail-bg"></div>
+    <img src="https://bobb-rob.github.io/ecommerce-product-page/cf503aaea954964f5273.jpg" id="3" alt="product-thumbnail"></li><li class="myThumbnails" tabindex="0" id="thumb-4">
+    <div class="faded-thumbnail-bg"></div>
+    <img src="https://bobb-rob.github.io/ecommerce-product-page/41da6fdd0ac384f6e068.jpg" id="4" alt="product-thumbnail"></li></ul>
+    </div>
+    <div class="headline-cart-div">
+      <section class="headline">
+        <h1>Sneaker Company</h1>
+        <h2>Fall Limited Edition <br> Sneakers</h2>
+        <p>These low-profile sneakers are your perfect casual wear companion. Featuring a
+          durable rubber outer sole, they ll withstand everything the weather can offer.
+        </p>
+      </section>
+  
+      <div class="cart-section">
+        <div class="price-section">
+          <div>
+            <div class="price">$125.00</div>
+            <span>50%</span>
+          </div>
+          <span>$250.00</span>
+        </div>
+        <ul class="add-item-section">
+          <li>
+            <img class="minus-icon" src="https://bobb-rob.github.io/ecommerce-product-page/f5073aa8273785ecf6b7.svg" alt="minus icon">
+          </li>
+          <li class="productQtyCount">0</li>
+          <li>
+            <img class="plus-icon" src="https://bobb-rob.github.io/ecommerce-product-page/b297868c5f938612f4f0.svg" alt="plus-icon">
+          </li>
+        </ul>
+        <div class="cart-btn-wrapper">
+          <button type="button" class="btn add-to-cart-btn">
+            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+             
+            </svg>
+            <p>Add to cart</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Robertson Akpan</a>.
+    </footer>
+  
+  
+  </body></html>
